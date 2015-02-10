@@ -1,0 +1,37 @@
+<h2>Tasks 's 
+<%= link_to @subject.name, subject_path(@subject) %>
+</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Done</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subject.tasks.each.with_index do |task, i| %>
+      <tr>
+        <th scope="row"><%=task.id%></th>
+        <td><%= link_to task.name, subject_task_path(@subject, task)%></td>
+        <td><%= task.description %></td>
+        <td>
+          <div class="checkbox">
+            <input name="tasks[<% i %>][task_id]"
+                    type="checkbox",
+                    disabled="",
+                    <%=@checked%>,
+                    value=<%=task.id%>>
+          </div>
+        </td>
+        <td><%= link_to "Edit", edit_subject_task_path(task.subject, task)%>
+            <%= link_to "Delete", [task.subject, task],
+                        method: :delete,
+                        data: { confirm: 'Drop this course?' }%>
+        </td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>

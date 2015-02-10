@@ -1,0 +1,16 @@
+<%= form_for [@subject, @task], method: :patch do |f| %>
+<div class="form-group">
+  <label>Edit task: </label>
+  <input name="name",class="form-control",
+         value=<%= @task.name%>>
+  <textarea name="description",class="form-control",
+         value=<%= @task.description%>>
+  </textarea>
+  <div with="100%" class="form-group">
+    <label>Done: </label>
+    <input name="status" type="checkbox">
+  </div>
+  <button type="submit" class="btn btn-default">Save
+  </button>
+</div>
+<%end%>
