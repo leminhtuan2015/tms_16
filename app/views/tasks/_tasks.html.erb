@@ -1,0 +1,21 @@
+<h2>Tasks</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subject.tasks.each do |task| %>
+      <tr>
+        <th scope="row"><%=task.id%></th>
+          <td>
+          <%= link_to task.name, ""%>
+          </td>
+          <td><%= task.description %></td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>

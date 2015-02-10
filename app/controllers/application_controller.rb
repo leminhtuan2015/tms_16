@@ -17,10 +17,7 @@ class ApplicationController < ActionController::Base
       course_id = params[:course_id]
     else
       course_id = params[:id]
-    end  
-
-    p 'Cccccccccccccccccc'
-    p course_id
+    end
     
     CourseSubject.where(:course_id => course_id.to_i).delete_all
     

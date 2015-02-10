@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row"><%=@subject.id%></th>
+      <th scope="row"><%= @subject.id%></th>
         <td><%= link_to @subject.name, subject_path(@subject)%>
         </td>
         <td><%= @subject.description %></td>
@@ -22,3 +22,6 @@
       </tr>
   </tbody>
 </table>
+
+<%= render 'tasks/tasks' %>
+<%= render 'tasks/new_task' %>

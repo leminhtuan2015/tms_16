@@ -5,6 +5,7 @@ class SubjectsController < ApplicationController
 
 	def show
 		@subject = Subject.find params[:id]
+		@task = Task.new
 	end
 
 	def new
@@ -12,7 +13,7 @@ class SubjectsController < ApplicationController
 	end
 
 	def create
-		@subject = Subject.new(subject_params)
+	  @subject = Subject.new(subject_params)
       if @subject.save
         redirect_to subjects_path
       else
@@ -22,9 +23,14 @@ class SubjectsController < ApplicationController
 
 	def edit
 		@subject = Subject.find params[:id]
+		@task = Task.new
 	end
 
 	def update
+	  if params[:name]!=""
+	    @task = Task.new params.permit(:name, :description, :subject_id)
+	    @task.save
+	  end
 	  @subject = Subject.find(params[:id])
       if @subject.update_attributes subject_params
         redirect_to subject_path(@subject)

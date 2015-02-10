@@ -68,9 +68,12 @@ ActiveRecord::Schema.define(version: 20150205091152) do
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.integer  "subject_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "tasks", ["subject_id"], name: "index_tasks_on_subject_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
