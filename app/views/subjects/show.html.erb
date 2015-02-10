@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Tasks</th>
+      <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= @subject.id%></th>
+      <td><%= link_to @subject.name, subject_path(@subject)%>
+      </td>
+      <td><%= @subject.description %></td>
+      <td>
+        <% @subject.tasks.each do | t |%>
+          <%= link_to t.name, task_detail_subject_path(t)%>
+          <%= "."%>
+        <%end%>
+      </td>
+      <td>
+        <%= link_to "Assign tasks.",  assign_tasks_subject_path(@subject)%>
+          <%= link_to "Tasks.",  edit_tasks_subject_path(@subject)%>
+          <%= link_to "Edit.", edit_subject_path(@subject)%>
+          <%= link_to "Delete.", subject_path(@subject),
+                       method: :delete,
+                       data: { confirm: 'Drop this subject?' }%>
+      </td>
+    </tr>
+  </tbody>
+</table>
