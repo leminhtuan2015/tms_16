@@ -17,7 +17,10 @@
         </td>
         <td><%= @course.description %></td>
         <td>
-        <%= @course.description %>
+        <% @course.course_subjects.each do |s|%>
+          <%= link_to s.subject.name, subject_path(s.subject)%>
+          <%= ","%>
+        <%end%>
         </td>
         <td><%= @course.description %></td>
         <td><%= @course.description %></td>
@@ -30,3 +33,5 @@
       </tr>
   </tbody>
 </table>
+
+<%= render 'course_subjects/add_subject'%>

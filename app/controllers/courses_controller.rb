@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+	include ApplicationHelper
 	def index
 	  @courses = Course.all
 	end
@@ -18,10 +19,14 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find params[:id]
+		@course_subject = CourseSubject.new
+		@subjects = Subject.all
 	end
 
 	def edit
 		@course = Course.find params[:id]
+		@course_subject = CourseSubject.new
+		@subjects = Subject.all
 	end
 
 	def destroy
@@ -31,6 +36,10 @@ class CoursesController < ApplicationController
 	end
 
 	def update
+	  p 'xxxxxxxxxxx'
+	  p params
+	  update_course_subject params
+
 	  @course = Course.find(params[:id])
       if @course.update_attributes course_params
         redirect_to course_path(@course)
