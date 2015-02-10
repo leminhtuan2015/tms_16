@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= @subject.id%></th>
+        <td><%= link_to @subject.name, subject_path(@subject)%>
+        </td>
+        <td><%= @subject.description %></td>
+        <td>
+          <%= link_to "Update", edit_subject_path(@subject)%>
+          <%= link_to "Delete", subject_path(@subject),
+                       method: :delete,
+                       data: { confirm: 'Drop this subject?' }%>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+<%= render 'tasks/tasks' %>
+<%= render 'tasks/new_task' %>

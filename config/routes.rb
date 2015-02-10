@@ -6,4 +6,19 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   resources :users do
   end
+  namespace :suppervisor do
+    resources :users
+  end
+
+  resources :courses do
+  end
+
+  resources :subjects do
+  end
+
+  resources :course_subjects do
+  end
+
+  resources :tasks do
+  end
 end

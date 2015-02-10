@@ -1,0 +1,45 @@
+<h2>Add subject</h2>
+<%= form_for(@course_subject) do |f| %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Select</th>
+      <th>Included</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subjects.each_with_index do |subject, i| %>
+      <tr>
+        <th scope="row"><%=subject.id%></th> 
+        <td>
+          <%= link_to subject.name, subject_path(subject)%>
+        </td>
+        <td>
+        <%if @course.subjects.where(:id => subject.id).blank?
+          @checked = ""
+        else   
+          @checked = "checked=''"
+        end%>
+          <div class="checkbox">
+            <input name="subjects[<% i %>][subject_id]"
+                   type="checkbox",
+                   <%=@checked%>,
+                   value=<%=subject.id%>>
+          </div>
+        </td>
+        <td><%= subject.description %></td> 
+      </tr>
+    <% end %> 
+    <tr>
+      <td>
+        <button type="submit" class="btn btn-default">Save
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<input type="hidden" name="course_id" 
+       value=<%= @course.id%>>
+<%end%>

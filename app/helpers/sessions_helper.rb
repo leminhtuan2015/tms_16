@@ -15,6 +15,10 @@ module SessionsHelper
     end
   end
 
+  def suppervisor_user?
+    current_user.suppervisor?
+  end
+
   def logged_in?
     !current_user.nil?
   end

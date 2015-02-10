@@ -1,0 +1,25 @@
+<h2>Tasks</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subject.tasks.each do |task| %>
+      <tr>
+        <th scope="row"><%=task.id%></th>
+        <td><%= link_to task.name, ""%></td>
+        <td><%= task.description %></td>
+        <td><%= link_to "Edit", edit_task_path(task)%>
+            <%= link_to "Delete", task_path(task),
+                        method: :delete,
+                        data: { confirm: 'Drop this course?' }%>
+        </td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>
