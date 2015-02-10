@@ -1,0 +1,20 @@
+<h2>Tasks 's 
+<%= link_to @task.subject.name, subject_path(@task.subject) %>
+</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= @task.id%></th>
+      <td><%= @task.name%>
+      </td>
+      <td><%= @task.description %></td>
+    </tr>
+  </tbody>
+</table>
