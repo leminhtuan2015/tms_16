@@ -5,6 +5,7 @@
       <th>#</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,14 @@
           <%= link_to task.name, ""%>
           </td>
           <td><%= task.description %></td>
+          <td>
+            <%= 
+            link_to "Edit", edit_task_path(task)
+            %>
+            <%= link_to "Delete", task_path(task),
+                        method: :delete,
+                        data: { confirm: 'Drop this course?' }%>
+          </td>
       </tr>
     <% end %> 
   </tbody>
