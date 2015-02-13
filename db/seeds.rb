@@ -12,4 +12,9 @@ User.create!(name:  "Example User",
               email: email,
               password:              password,
               password_confirmation: password)
+  Course.create!(name: "course-#{n+1}", description: name)
+  Subject.create!(name: "subject-#{n+1}", description: email)
+  5.times do |m|
+    Task.create!(name: "task-#{n+1}", subject_id: m+1)
+  end
 end
