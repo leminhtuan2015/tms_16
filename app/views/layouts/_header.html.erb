@@ -3,6 +3,9 @@
     <%= link_to "Framgia Training System", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "Course", courses_path %>
+        </li>
         <li><%= link_to "Home", root_path %></li>
         <% if logged_in? %>
           <li>
