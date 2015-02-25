@@ -1,0 +1,12 @@
+<h2>Assign subjects for Course :
+  <%= link_to @course.name, course_path(@course) %>
+</h2>
+<%= form_for :course, url: course_course_subjects_path,
+          method: :patch do |f| %>
+<%= collection_check_boxes(:course, :subject_ids, Subject.all, :id, :name) do |b|%>
+    <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %>
+<% end %>
+<hr>
+<button type="submit" class="btn btn-default">Save
+</button>
+<% end %>

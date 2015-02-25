@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   end
   resources :courses do
     resource :enrollments
+    resource :course_subjects
   end
 end
