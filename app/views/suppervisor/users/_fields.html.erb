@@ -12,6 +12,12 @@
 <%= f.label :password_confirmation, "Confirmation" %>
 <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+<%= f.label :Change_avartar %>
+<div class="avatar">
+  <%= image_tag @user.avatar_url %>
+</div>
+<%= f.file_field :avatar, type: :file %>
+
 <%= f.label :suppervisor, class: "checkbox inline" do %>
   <%= f.check_box :suppervisor %>
   <span>Suppervisor</span>
