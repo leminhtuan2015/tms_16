@@ -1,0 +1,30 @@
+<h2>Assign subjects for Course :
+  <%= link_to @course.name, course_path(@course) %>
+</h2>
+<%= form_for :course, url: course_course_subjects_path,
+          method: :patch do |f| %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Selected</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @subjects.each do |subject| %>
+    <tr>
+      <th scope="row"><%= subject.id %></th> 
+      <td>
+        <%= link_to subject.name, "" %>
+      </td>
+      <td>
+      <%= f.check_box "subject_ids", {:multiple => true}, subject.id, nil %>
+      </td>
+    </tr>
+  <% end %> 
+  </tbody>
+</table>
+<button type="submit" class="btn btn-default">Save
+</button>
+<% end %>
