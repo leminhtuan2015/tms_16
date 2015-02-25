@@ -1,0 +1,4 @@
+<li>
+  <%= task.name %>
+  | <%= task.status(current_user) ? "Finish" : "Training" %>
+</li>
