@@ -6,4 +6,8 @@ class Task < ActiveRecord::Base
   belongs_to :subject
 
   validates :name,  presence: true, length: {maximum: 50}
+
+  def status(user)
+    self.enrollment_tasks.find_by(user_id: user.id).status
+  end
 end

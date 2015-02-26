@@ -20,7 +20,7 @@
       <td>
         <% @course.course_subjects.each do |course_subject|%>
           <%= link_to course_subject.subject.name, 
-                    subject_path(course_subject.subject) %>
+                    suppervisor_subject_path(course_subject.subject) %>
           <%= "."%>
         <% end %>
       </td>
