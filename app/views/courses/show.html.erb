@@ -33,6 +33,12 @@
         <%= link_to "Delete.", course_path(@course),
                     method: :delete,
                     data: {confirm: 'Drop this course?'}%>
+          <%= form_for @course, method: :patch do |f| %>
+            <%= f.hidden_field :start_course, value: :true %>
+            <button type="submit" class="btn btn-primary">
+              Start course
+            </button>
+          <% end %>
       </td>
     </tr>
   </tbody>
