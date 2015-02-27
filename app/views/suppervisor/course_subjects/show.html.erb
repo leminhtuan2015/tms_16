@@ -1,0 +1,29 @@
+<h2>Assign subjects for Course :
+  <%= link_to @course.name, suppervisor_course_path(@course) %>
+</h2>
+<%= form_for :course, url: suppervisor_course_course_subjects_path,
+          method: :patch do |f| %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Selected</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= collection_check_boxes(:course, :subject_ids, Subject.all, :id, :name) do |b|%>
+        <tr>
+          <th scope="row"><%= b.object.id %></th> 
+          <td>
+            <%= link_to b.text, suppervisor_subject_path(b.object) %>
+          </td>
+          <td>
+            <%= b.label(:"data-value" => b.value) {b.check_box} %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table> 
+  <button type="submit" class="btn btn-default">Save</button>
+<% end %>
