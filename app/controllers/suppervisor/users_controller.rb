@@ -28,7 +28,7 @@ class Suppervisor::UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    if @user.update_attributes(user_params)
+    if @user.update_attributes user_params
       if current_user? @user
         flash[:success] = 'Profile updated'      
         render 'show'
@@ -49,7 +49,7 @@ class Suppervisor::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :suppervisor)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :suppervisor, :avatar)
   end
 
   def admin_user
