@@ -1,0 +1,27 @@
+<h1>
+  <%= link_to @course.name, edit_suppervisor_course_path(@course) %>
+</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Subject</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @course.course_subjects.each do |course_subject| %>
+      <tr>
+        <th scope="row"><%= course_subject.subject.id %></th>
+        <td>        
+          <%= link_to course_subject.subject.name, 
+          suppervisor_subject_path(course_subject.subject) %>
+        </td>
+        <td><%= course_subject.subject.description %></td>
+        <td>
+          Finish
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

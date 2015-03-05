@@ -1,0 +1,70 @@
+<h1>All Courses</h1>
+<%= link_to "Create course", new_suppervisor_course_path%> 
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Subject</th>
+      <th>Trainee</th>
+      <th>Suppervisor</th>
+      <th>Start</th>
+      <th>Finish</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <th scope="row"><%= course.id %></th>
+        <td>
+          <%= link_to course.name, suppervisor_course_path(course) %>
+        </td>
+        <td><%= course.description %></td>
+        <td>
+          <%= link_to_if course.begin.nil?, course.course_subjects.count, 
+          suppervisor_course_course_subjects_path(course) %>
+        </td>
+        <td>
+          <%= link_to_if course.begin.nil?, course.enrollments.count, 
+          suppervisor_course_enrollments_path(course) %>
+        </td>
+        <td>
+          <% course.users.each do |user|%>
+            <% if user.suppervisor? %>
+              <%= link_to user.name, suppervisor_user_path(user) %>
+            <% end %>
+          <% end %> 
+        </td>
+        <td>
+          <% if course.begin.nil? %>
+            <%= form_for [:suppervisor, course] do |f| %>
+              <%= f.hidden_field :begin, value: Time.now %>
+              <%= f.submit "Start" %>              
+            <% end %>
+          <% else %>
+            Started
+          <% end %>
+        </td>
+        <td>
+          <% if !course.begin.nil? %>
+            <% if course.end.nil? %>
+              <%= form_for [:suppervisor, course] do |f| %>
+                <%= f.hidden_field :end, value: Time.now %>
+                <%= f.submit "Finish" %>              
+              <% end %>
+            <% else %>
+              Finished
+            <% end %>
+          <% else %>
+            Finish
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Delete", suppervisor_course_path(course), 
+          method: :delete, data: {confirm: 'Drop this course?'}%>
+        </td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>

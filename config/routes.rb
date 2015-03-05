@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   namespace :suppervisor do
     resources :users
     resources :subjects
-  end
-  resources :courses do
-    resource :enrollments
-    resource :course_subjects
+    resources :courses do
+      resource :enrollments
+      resource :course_subjects
+    end
   end
 end
