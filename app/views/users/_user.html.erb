@@ -1,5 +1,9 @@
 <li>
-  <%= gravatar_for user, size: 50 %>
+  <% if user.avatar_url.nil? %>
+    <%= gravatar_for user %>
+  <% else %>
+    <%= image_tag user.avatar.thumbnail.url %>
+  <% end %>
   <%= link_to user.name, user %>
   | <%= user.suppervisor? ? 'Suppervisor' : 'Member' %>
 </li>

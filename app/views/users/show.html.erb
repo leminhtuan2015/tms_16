@@ -3,8 +3,12 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>        
+        <% if @user.avatar_url.nil? %>
+          <%= gravatar_for @user, size: 150 %>
+        <% else %>
+          <%= image_tag @user.avatar.standard.url, class: "gravatar" %>
+        <% end %>
+        <%= @user.name %>      
       </h1>
       <%= @user.suppervisor? ? 'Suppervisor' : 'Member' %>
     </section>
