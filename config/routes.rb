@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   resources :users do  
-    resources :subjects  
+    resources :subjects
+    resources :reports
   end
   namespace :suppervisor do
     resources :users
