@@ -6,20 +6,35 @@ class Suppervisor::CourseSubjectsController < ApplicationController
     @subjects = Subject.all
   end
 
+  def edit
+    @course_subject = CourseSubject.find params[:id]
+  end
+
   def update
-    @course = Course.find params[:course_id]
-    if @course.update_attributes course_subject_params
-      flash[:success] = "Assigned!"
-      redirect_to suppervisor_course_path params[:course_id]
+    if params[:course_subject][:end]
+      @course_subject = CourseSubject.find params[:id]
+      @course_subject.update_attributes course_subject_finish_params
+      flash[:success] = "Subject finished!"
+      redirect_to [:suppervisor, @course_subject.course]
     else
-      flash[:error] = "Sorry! somthing get wrong, we are woking on it."
-      redirect_to suppervisor_course_course_subjects_path params[:course_id]
+      @course = Course.find params[:course_id]
+      if @course.update_attributes course_subject_params
+        flash[:success] = "Assigned!"
+        redirect_to [:suppervisor, @course]
+      else
+        flash[:error] = "Sorry! somthing get wrong, we are woking on it."
+        redirect_to suppervisor_course_course_subjects_path params[:course_id]
+      end
     end
   end
 
   private
   def course_subject_params
     params.require(:course).permit subject_ids: []
+  end
+
+  def course_subject_finish_params
+    params.require(:course_subject).permit :end
   end
 
   def admin_user

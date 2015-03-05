@@ -19,7 +19,16 @@
         </td>
         <td><%= course_subject.subject.description %></td>
         <td>
-          Finish
+          <% if !course_subject.begin.nil? %>
+            <% if course_subject.end.nil? %>
+              <%= form_for [:suppervisor, course_subject] do |f| %>
+                <%= f.hidden_field :end, value: Time.now %>
+                <%= f.submit "Finish" %>              
+              <% end %>
+            <% else %>
+              Finished
+            <% end %>
+          <% end %>
         </td>
       </tr>
     <% end %>
