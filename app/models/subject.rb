@@ -12,7 +12,7 @@ class Subject < ActiveRecord::Base
   validates :name,  presence: true, length: {maximum: 50}
   validates :description,  presence: true
 
-  def status(user)
-    self.enrollment_subjects.find_by(user_id: user.id).status
+  def status(user, course)
+    self.enrollment_subjects.find_by(user_id: user.id, course_id: course.id).status
   end
 end

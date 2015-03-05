@@ -2,7 +2,7 @@
   <p>
     <h3><%= subject.name %></h3>
     <h4>
-      <%= subject.status(current_user) ? "Finish" : "Training" %>
+      <%= subject.status(current_user, current_course) ? "Finish" : "Training" %>
     </h4>
     <br>
     <%= subject.description %>

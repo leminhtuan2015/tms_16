@@ -8,15 +8,24 @@
           <li>
             <%= link_to "Members", suppervisor_user? ? 
             suppervisor_users_path : users_path %>
+          </li>          
+          <% if suppervisor_user? %>
+          <li>
+            <%= link_to "Course", suppervisor_courses_path %>
           </li>
           <li>
-            <%= link_to "Course", suppervisor_user? ? 
-            suppervisor_courses_path : user_subjects_path(current_user) %>
+            <%= link_to "Subjects", suppervisor_subjects_path %>
           </li>
-          <% if suppervisor_user? %>
-            <li>
-              <%= link_to "Subjects", suppervisor_subjects_path %>
-            </li>
+          <% else %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Course <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Subjects", course_subjects_path(current_course) %></li>
+              <li><%= link_to "Members", course_members_path(current_course) %></li>     
+            </ul>
+          </li>
           <% end %>
           <li>
             <%= link_to "Report", user_reports_path(current_user) %>

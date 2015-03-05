@@ -1,0 +1,31 @@
+<h2>
+  <%= @subject.name %>
+</h2>
+<%= form_for [current_user, @subject] do |f| %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Task name</th>
+        <th>Completed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :enrollment_tasks do |builder| %>
+        <% if current_user?(builder.object.user) && 
+            current_course?(builder.object.course) %>
+          <tr>
+            <th scope="row"><%= builder.object.task.id %></th> 
+            <td>
+              <%= builder.object.task.name %>
+            </td>
+            <td>
+              <%= builder.check_box :status %>
+            </td>
+          </tr>
+        <% end %> 
+      <% end %>
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-default">Save</button>
+<% end %>

@@ -1,4 +1,4 @@
 <li>
   <%= task.name %>
-  | <%= task.status(current_user) ? "Finish" : "Training" %>
+  | <%= task.status(current_user, current_course) ? "Finish" : "Training" %>
 </li>

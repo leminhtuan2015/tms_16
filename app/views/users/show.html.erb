@@ -16,7 +16,7 @@
   <div class="col-md-8">
     <% if !@subjects.nil? %>
       <h1>
-        <%= @course.name %>
+        <%= current_course.name %>
       </h1>
       <ul class="users">
         <%= render @subjects %>
