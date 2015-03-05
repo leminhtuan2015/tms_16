@@ -1,23 +1,23 @@
 class SubjectsController < ApplicationController
-  before_action :correct_user
-  before_action :correct_subject, only:[:show, :update]
-
-  def index
-    @subjects = current_user.subjects
-  end
+  before_action :current_user
+  before_action :correct_subject, only:[:edit, :update]
 
   def show
-    @subject = current_user.subjects.find params[:id]
-    @tasks = @subject.tasks
+    @course = Course.find params[:course_id]
+    @subjects = @course.subjects.paginate page: params[:page]
+  end
+
+  def edit
+    @subject = Subject.find params[:id]
   end
 
   def update
-    @subject = current_user.subjects.find params[:id]
+    @subject = Subject.find params[:id]
     if @subject.update_attributes subject_params
       flash[:success] = 'Subject updated'
       redirect_to current_user
     else
-      render 'show'  
+      render 'edit'  
     end
   end
 
@@ -25,11 +25,6 @@ class SubjectsController < ApplicationController
   def subject_params
     params.require(:subject).permit(enrollment_tasks_attributes: 
       [:id, :user_id, :course_id, :task_id, :status])
-  end
-
-  def correct_user
-    @user = User.find params[:user_id]
-    redirect_to root_url unless current_user? @user
   end
 
   def correct_subject

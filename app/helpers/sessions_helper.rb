@@ -7,12 +7,20 @@ module SessionsHelper
     user == current_user
   end
 
+  def current_course?(course)
+    course == current_course
+  end
+
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by id: user_id
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by id: user_id
     end
+  end
+
+  def current_course
+    current_user.courses.last
   end
 
   def suppervisor_user?

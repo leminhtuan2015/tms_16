@@ -1,28 +1,23 @@
-<h2>
-  <%= @subject.name %>
-</h2>
-<%= form_for [current_user, @subject] do |f| %>
-  <table class="table">
-    <thead>
+<h1><%= @course.name %></h1>
+<%= will_paginate %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>    
+    <% @subjects.each do |subject| %>
       <tr>
-        <th>id</th>
-        <th>Task name</th>
-        <th>Completed</th>
+        <th scope="row"><%= subject.id %></th>
+        <td>
+          <%= link_to subject.name, edit_user_subject_path(current_user, subject) %>
+        </td>
+        <td><%= subject.description %></td>
       </tr>
-    </thead>
-    <tbody>
-      <%= f.fields_for :enrollment_tasks do |builder| %>
-        <tr>
-          <th scope="row"><%= builder.object.task.id %></th> 
-          <td>
-            <%= builder.object.task.name %>
-          </td>
-          <td>
-            <%= builder.check_box :status %>
-          </td>
-        </tr>
-      <% end %> 
-    </tbody>
-  </table>
-  <button type="submit" class="btn btn-default">Save</button>
-<% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate %>

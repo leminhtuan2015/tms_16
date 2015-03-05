@@ -8,9 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    if current_user? @user
-      @course = current_user.courses.first
-      @subjects = current_user.subjects
+    if current_user?(@user) && !@user.suppervisor?
+      @subjects = current_course.subjects
     end
   end
 

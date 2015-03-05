@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :subjects
     resources :reports
   end
+  resources :courses do 
+    resource :subjects
+    resource :members
+  end
   namespace :suppervisor do
     resources :users
     resources :subjects
