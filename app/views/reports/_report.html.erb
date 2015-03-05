@@ -1,0 +1,26 @@
+<h1>
+  <%= subject.name %>
+</h1>
+<%= form_for [current_user, subject] do |f| %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Task name</th>
+        <th>Completed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :enrollment_tasks do |builder| %>
+        <tr>
+          <td>
+            <%= builder.object.task.name %>
+          </td>
+          <td>
+            <%= builder.check_box :status %>
+          </td>
+        </tr>
+      <% end %> 
+    </tbody>
+  </table>
+  <button type="submit" class="btn btn-default">Save</button>
+<% end %>
